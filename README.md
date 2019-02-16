@@ -28,7 +28,7 @@
 
 #### 온라인 코드 리뷰 방법
 
-[2월 15일 진행했던 github로 온라인 코드 리뷰 방법]()
+[2월 15일 진행했던 github로 온라인 코드 리뷰 방법](https://github.com/JNU-econovation/javacript-study/blob/master/OnlineCodeReviewGuide.md)
 
 [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/wwh-techcamp-2018/wwh-docs/blob/master/README.md)
 
