@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>자바스크립트 계산기!</title>
+    <script type="text/javascript" src="calculator.js"></script>
+    <link rel="stylesheet" href="calculator.css" type="text/css">
+</head>
+
+<body>
+    <table border="3">
+        <tr>
+            <td colspan="4">
+                <b>자바스크립트 계산기!</b>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <input type="text" id="input">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                =<input type="text" id="answer">
+            </td>
+        </tr>
+        <tr>
+            <td onclick="add(7)">7</td>
+            <td onclick="add(8)">8</td>
+            <td onclick="add(9)">9</td>
+            <td onclick="add('*')">×</td>
+        </tr>
+        <tr>
+            <td onclick="add(4)">4</td>
+            <td onclick="add(5)">5</td>
+            <td onclick="add(6)">6</td>
+            <td onclick="add('/')">÷</td>
+        </tr>
+        <tr>
+            <td onclick="add(1)">1</td>
+            <td onclick="add(2)">2</td>
+            <td onclick="add(3)">3</td>
+            <td onclick="add('+')">+</td>
+        </tr>
+        <tr>
+            <td onclick="add(0)">0</td>
+            <td onclick="reset()">CE</td>
+            <td onclick="calculate()">=</td>
+            <td onclick="add('-')">-</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                http://hotheadfactory.com
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

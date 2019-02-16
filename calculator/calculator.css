@@ -1,0 +1,17 @@
+table {
+    float: center;
+    margin: auto;
+    margin-top: 120px;
+}
+td {
+    width: 40px;
+    padding: 10px 15px;
+    text-align: center;
+}
+input {
+    text-align: right;
+    border: none;
+}
+input:focus {
+    outline: none;
+}
