@@ -1,8 +1,8 @@
-function charin(c) {
+function charIn(c) {
     var input = document.getElementById('input');
     input.value += c;
 }
-function reset() {
+function resetInput() {
     document.getElementById('input').value = "";
     document.getElementById('answer').value = "";
 }
