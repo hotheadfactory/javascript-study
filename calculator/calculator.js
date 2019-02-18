@@ -1,4 +1,4 @@
-function add(c) {
+function charin(c) {
     var input = document.getElementById('input');
     input.value += c;
 }
@@ -6,20 +6,26 @@ function reset() {
     document.getElementById('input').value = "";
     document.getElementById('answer').value = "";
 }
-function typeerror() {
+function typeError() {
     alert("입력 형식이 맞지 않습니다!");
 }
+
+function isValid(input, num) {
+    var a = true;
+    if((/[\*\/\+\-]/.exec(input.value)) != null && (num[0] == ""||num[1] == "") || isNaN(num[0])){
+        a = false;
+    }
+    return a;
+}
+
 function calculate() {
     var input = document.getElementById('input');
-    var num = input.value.split(/[\*\/\+\-]/);
-    var answer = "";
-    //alert(num[0]);
-    //alert(num[1]);
-    //alert("num0 : " + isNaN(num[0]));
-    //alert("num1 : " + isNaN(num[1]));   
-    if ((/[\*\/\+\-]/.exec(input.value)) && num[1] == "" || isNaN(num[0])) {
-        typeerror();
-    }
+    var num = input.value.split(/[\*\/\+\-]/); // 연산자 기준으로 나눔
+    var answer = ""; // 초기화
+    
+    if (isValid(input, num) == false || isNaN(num[0])) {
+        typeError();
+    } // 형식 오류 검출
     if (/\*/.exec(input.value)) {
         answer = num[0] * num[1];
     }
@@ -37,14 +43,13 @@ function calculate() {
     if (/\-/.exec(input.value)) {
         answer = num[0] - num[1];
     }
-    if (!(/[\*\/\+\-]/.exec(input.value)) || num[1] != "") {
+    if (isValid(input, num)) {
         document.getElementById('answer').value = answer;
-    }
+    } // Valid한 경우
     if (!isNaN(num[0]) && isNaN(num[1])) {
         document.getElementById('answer').value = num[0];
-    }
+    } // 연산자 없이 숫자만 입력했을 경우
  }
-
 
 //연산자 있고 두번째 숫자가 null -> 에러
 //연산자 있고 두번째 숫자가 존재 -> 정상
