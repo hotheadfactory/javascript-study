@@ -22,7 +22,7 @@ function calculate() {
     var input = document.getElementById('input');
     var num = input.value.split(/[\*\/\+\-]/); // 연산자 기준으로 나눔
     var answer = ""; // 초기화
-    
+
     if (isValid(input, num) == false || isNaN(num[0])) {
         typeError();
     } // 형식 오류 검출
