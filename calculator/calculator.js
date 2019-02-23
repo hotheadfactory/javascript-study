@@ -11,43 +11,63 @@ function typeError() {
 }
 
 function isValid(input, num) {
-    var a = true;
     if((/[\*\/\+\-]/.exec(input.value)) != null && (num[0] == ""||num[1] == "") || isNaN(num[0])){
-        a = false;
+        return false;
     }
-    return a;
+    return true;
+}
+
+function multiply(splittedNum) {
+    answer = splittedNum[0] * splittedNum[1];
+    return answer;
+}
+
+function divide(splittedNum) {
+    if(splittedNum[1] == '0') {
+        alert("0으로 나눌 수 없음!");
+        answer = 0;
+    }
+    if(splittedNum[1] != '0') {
+        answer = splittedNum[0] / splittedNum[1];
+    }
+    return answer;
+}
+
+function add(splittedNum) {
+    answer = splittedNum[0]*1 + splittedNum[1]*1;
+    return answer;
+}
+
+function subtract(splittedNum) {
+    answer = splittedNum[0] - splittedNum[1];
+    return answer;
 }
 
 function calculate() {
     var input = document.getElementById('input');
-    var num = input.value.split(/[\*\/\+\-]/); // 연산자 기준으로 나눔
+    var splittedNum = input.value.split(/[\*\/\+\-]/); // 연산자 기준으로 나눔
     var answer = ""; // 초기화
     
-    if (isValid(input, num) == false || isNaN(num[0])) {
+    if (isValid(input, splittedNum) == false || isNaN(splittedNum[0])) {
         typeError();
     } // 형식 오류 검출
     if (/\*/.exec(input.value)) {
-        answer = num[0] * num[1];
+        answer = multiply(splittedNum);
     }
     if (/\//.exec(input.value)) {
-        if(num[1] == '0') {
-            alert("0으로 나눌 수 없음!");
-        }
-        if(num[1] != '0') {
-            answer = num[0] / num[1];
-        }
+        answer = divide(splittedNum);
     }
     if (/\+/.exec(input.value)) {
-        answer = num[0]*1 + num[1]*1;
+        answer = add(splittedNum);
     }
     if (/\-/.exec(input.value)) {
-        answer = num[0] - num[1];
+        answer = subtract(splittedNum);
     }
-    if (isValid(input, num)) {
+    if (isValid(input, splittedNum)) {
         document.getElementById('answer').value = answer;
     } // Valid한 경우
-    if (!isNaN(num[0]) && isNaN(num[1])) {
-        document.getElementById('answer').value = num[0];
+    if (!isNaN(splittedNum[0]) && isNaN(splittedNum[1])) {
+        document.getElementById('answer').value = splittedNum[0];
     } // 연산자 없이 숫자만 입력했을 경우
  }
 
