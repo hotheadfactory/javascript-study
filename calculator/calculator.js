@@ -1,4 +1,9 @@
-function charIn(c) {
+function numIn(c) {
+    var display = document.getElementById('display');
+    display.value += c;
+}
+function operandIn(c) {
+    calculate();
     var display = document.getElementById('display');
     display.value += c;
 }
