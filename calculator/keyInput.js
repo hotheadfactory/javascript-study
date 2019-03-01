@@ -1,6 +1,7 @@
-window.onkeyup = function(e) {
+window.onkeydown = function(e) {
     var key = e.keyCode ? e.keyCode : e.which;
     var display = document.getElementById('display');
+    display.setAttribute("readonly", true)
  
     if (key == 49 || key == 97) {
         console.log("1 pressed!");
@@ -40,25 +41,25 @@ window.onkeyup = function(e) {
     }
     if (key == 106 || key == 42) {
         console.log("multiply!");
-        calculate();
+        evaluateCal();
         display.value += '*';
     }
     if (key == 107 || key == 43) {
         console.log("add!");
-        calculate();
+        evaluateCal();
         display.value += '+';
     }
     if (key == 108 || key == 44) {
         console.log("subtract!");
-        calculate();
+        evaluateCal();
         display.value += '-';
     }
     if (key == 109 || key == 45) {
         console.log("divide!");
-        calculate();
+        evaluateCal();
         display.value += '/';
     }
     if (key == 13) {
-        calculate();
+        evaluateCal();
     }
  }

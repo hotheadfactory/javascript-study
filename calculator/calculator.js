@@ -1,19 +1,21 @@
 function numIn(c) {
     var display = document.getElementById('display');
-    display.value += c;
+    display.value += c; // 숫자 입력
 }
 function operandIn(c) {
-    calculate();
+    evaluateCal(); // 새로운 연산자를 입력할 때마다 이전 연산을 완료
     var display = document.getElementById('display');
     display.value += c;
 }
 function resetDisplay() {
-    document.getElementById('display').value = "";
+    document.getElementById('display').value = ""; // C/E
 }
+
+
+
 function typeError() {
     alert("입력 형식이 맞지 않습니다!");
 }
-
 function isValid(display, num) {
     if((/[\*\/\+\-]/.exec(display.value)) != null && (num[0] == ""||num[1] == "") || isNaN(num[0])){
         return false;
@@ -21,33 +23,50 @@ function isValid(display, num) {
     return true;
 }
 
+
+
 function multiply(splittedNum) {
-    answer = splittedNum[0] * splittedNum[1];
-    return answer;
+    return (splittedNum[0] * splittedNum[1]);
 }
 
 function divide(splittedNum) {
     if(splittedNum[1] == '0') {
         alert("0으로 나눌 수 없음!");
-        answer = 0;
+        return 0;
     }
     if(splittedNum[1] != '0') {
-        answer = splittedNum[0] / splittedNum[1];
-    }
-    return answer;
+        return (splittedNum[0] / splittedNum[1]);
+    }calculate
 }
 
 function add(splittedNum) {
-    answer = splittedNum[0]*1 + splittedNum[1]*1;
-    return answer;
+    return (parseInt(splittedNum[0]) + parseInt(splittedNum[1]));
 }
 
 function subtract(splittedNum) {
-    answer = splittedNum[0] - splittedNum[1];
-    return answer;
+    return (splittedNum[0] - splittedNum[1]);
 }
 
-function calculate() {
+function calculate(splittedNum) {
+    var display = document.getElementById('display');
+    if (/\*/.exec(display.value)) {
+        return multiply(splittedNum);
+    }
+    if (/\//.exec(display.value)) {
+        return divide(splittedNum);
+    }
+    if (/\+/.exec(display.value)) {
+        return add(splittedNum);
+    }
+    if (/\-/.exec(display.value)) {
+        return subtract(splittedNum);
+    }
+}
+//이상 연산식들
+
+
+
+function evaluateCal() {
     var display = document.getElementById('display');
     var splittedNum = display.value.split(/[\*\/\+\-]/); // 연산자 기준으로 나눔
     var answer = ""; // 초기화
@@ -55,20 +74,8 @@ function calculate() {
     if (isValid(display, splittedNum) == false || isNaN(splittedNum[0])) {
         typeError();
     } // 형식 오류 검출
-    if (/\*/.exec(display.value)) {
-        answer = multiply(splittedNum);
-    }
-    if (/\//.exec(display.value)) {
-        answer = divide(splittedNum);
-    }
-    if (/\+/.exec(display.value)) {
-        answer = add(splittedNum);
-    }
-    if (/\-/.exec(display.value)) {
-        answer = subtract(splittedNum);
-    }
     if (isValid(display, splittedNum)) {
-        document.getElementById('display').value = answer;
+        document.getElementById('display').value = calculate(splittedNum);
     } // Valid한 경우
     if (!isNaN(splittedNum[0]) && isNaN(splittedNum[1])) {
         document.getElementById('display').value = splittedNum[0];
