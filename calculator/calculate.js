@@ -22,30 +22,29 @@ function calculate(splittedNum) {
     var plus = /\+/;
     var minus = /\-/;
 
-    if (mul.exec(display.value)) {
+    if (mul.exec(grabDisplay().value)) {
         return multiply(splittedNum);
     }
-    if (div.exec(display.value)) {
+    if (div.exec(grabDisplay().value)) {
         return divide(splittedNum);
     }
-    if (plus.exec(display.value)) {
+    if (plus.exec(grabDisplay().value)) {
         return add(splittedNum);
     }
-    if (minus.exec(display.value)) {
+    if (minus.exec(grabDisplay().value)) {
         return subtract(splittedNum);
     }
 }
 
 function evaluateCal() {
-    var display = document.getElementById('display');
     var operands = /[\*\/\+\-]/;
-    var splittedNum = display.value.split(operands); // 연산자 기준으로 나눔
+    var splittedNum = grabDisplay().value.split(operands); // 연산자 기준으로 나눔
 
-    if (isValid(display, splittedNum)) {
-        document.getElementById('display').value = calculate(splittedNum);
+    if (checkCalValidity(splittedNum)) {
+        grabDisplay().value = calculate(splittedNum);
     } // Valid한 경우
 
     if (!isNaN(splittedNum[0]) && isNaN(splittedNum[1])) {
-        document.getElementById('display').value = splittedNum[0];
+        grabDisplay().value = splittedNum[0];
     } // 연산자 없이 숫자만 입력했을 경우
  }

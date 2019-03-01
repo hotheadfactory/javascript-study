@@ -21,34 +21,34 @@
             </td>
         </tr>
         <tr>
-            <td data-key="7" onclick="putNum(display, 7)">7</td>
-            <td data-key="8" onclick="putNum(display, 8)">8</td>
-            <td data-key="9" onclick="putNum(display, 9)">9</td>
-            <td data-key="*" onclick="putOperand(display, '*')">×</td>
+            <td data-key="7" onclick="putNum(7)">7</td>
+            <td data-key="8" onclick="putNum(8)">8</td>
+            <td data-key="9" onclick="putNum(9)">9</td>
+            <td data-key="*" onclick="putOperand('*')">×</td>
         </tr>
         <tr>
-            <td data-key="4" onclick="putNum(display, 4)">4</td>
-            <td data-key="5" onclick="putNum(display, 5)">5</td>
-            <td data-key="6" onclick="putNum(display, 6)">6</td>
-            <td data-key="/" onclick="putOperand(display, '/')">÷</td>
+            <td data-key="4" onclick="putNum(4)">4</td>
+            <td data-key="5" onclick="putNum(5)">5</td>
+            <td data-key="6" onclick="putNum(6)">6</td>
+            <td data-key="/" onclick="putOperand('/')">÷</td>
         </tr>
         <tr>
-            <td data-key="1" onclick="putNum(display, 1)">1</td>
-            <td data-key="2" onclick="putNum(display, 2)">2</td>
-            <td data-key="3" onclick="putNum(display, 3)">3</td>
-            <td data-key="+" onclick="putOperand(display, '+')">+</td>
+            <td data-key="1" onclick="putNum(1)">1</td>
+            <td data-key="2" onclick="putNum(2)">2</td>
+            <td data-key="3" onclick="putNum(3)">3</td>
+            <td data-key="+" onclick="putOperand('+')">+</td>
         </tr>
         <tr>
-            <td data-key="0" onclick="putNum(display, 0)">0</td>
-            <td data-key="." onclick="putNum(display, '.')">.</td>
-	        <td data-key="Escape" onclick="resetDisplay(display)">C/E</td>
-            <td data-key="-" onclick="putOperand(display, '-')">-</td>
+            <td data-key="0" onclick="putNum(0)">0</td>
+            <td data-key="." onclick="putNum('.')">.</td>
+	        <td data-key="Escape" onclick="resetDisplay()">C/E</td>
+            <td data-key="-" onclick="putOperand('-')">-</td>
         </tr>
         <tr>
             <td colspan="2">
                 http://h2f.kr
 	        </td>
-	        <td data-key="Enter" colspan='2' onclick="evaluateCal(display)">=</td>
+	        <td data-key="Enter" colspan='2' onclick="evaluateCal()">=</td>
         </tr>
     </table>
 </body>
