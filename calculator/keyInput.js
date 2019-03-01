@@ -1,3 +1,4 @@
+//ECONOVATION, ECE 151807 정회형. 2019.03.01
 window.onkeydown = function(e) {
     var key = e.keyCode ? e.keyCode : e.which;
     var display = document.getElementById('display');
