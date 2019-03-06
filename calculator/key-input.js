@@ -3,11 +3,14 @@ function grabDisplay() {
     return document.getElementById('display');
 }
 
+function pressedKey(e) {
+    return document.querySelector(`td[data-key="${e.key}"]`);
+}
+
 window.addEventListener('keydown', function(e) {
-    var pressedKey = document.querySelector(`td[data-key="${e.key}"]`);
     console.log(e.key+" Pressed");
-    if (pressedKey != null) {
-        pressedKey.onclick();
+    if (pressedKey(e) != null) {
+        pressedKey(e).onclick();
     }
 });
 
@@ -35,10 +38,16 @@ function checkDividedByZero(num) {
     return true;
 }
 
-function checkCalValidity(num) {
-    var operands = /[\*\/\+\-]/;
-    var misplacedOperand = (operands.exec(grabDisplay().value)) != null && (num[0] == ""||num[1] == "") || isNaN(num[0]);
+function doesExist(str) {
+    return str.exec(grabDisplay().value);
+}
 
+function checkSplitValue(num) {
+    return (num[0] == ""||num[1] == "") || isNaN(num[0]);
+}
+
+function checkCalValidity(num) {
+    var misplacedOperand = doesExist(/[\*\/\+\-]/) && checkSplitValue(num);
     if(misplacedOperand){
         alert("입력 형식이 맞지 않습니다!");
         resetDisplay();
@@ -46,8 +55,3 @@ function checkCalValidity(num) {
     }
     return true;
 }
-
-//연산자 있고 두번째 숫자가 null -> 에러
-//연산자 있고 두번째 숫자가 존재 -> 정상
-//연산자 없고 두변째 숫자 null   -> 패스스루
-//연산자 없고 두번째 숫자 존재   -> N/A

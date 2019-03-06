@@ -36,15 +36,22 @@ function calculate(splittedNum) {
     }
 }
 
+function writeToDisplay(splittedNum) {
+    grabDisplay().value = calculate(splittedNum);
+}
+
+function checkPassThrough(splittedNum) {
+    if (!isNaN(splittedNum[0]) && isNaN(splittedNum[1])) {
+        grabDisplay().value = splittedNum[0];
+    } // 연산자 없이 숫자만 입력했을 경우
+}
+
 function evaluateCal() {
     var operands = /[\*\/\+\-]/;
     var splittedNum = grabDisplay().value.split(operands); // 연산자 기준으로 나눔
 
-    if (checkCalValidity(splittedNum) || (CheckDividedByZero(splittedNum))) {
+    if (checkCalValidity(splittedNum) || checkDividedByZero(splittedNum)) {
         grabDisplay().value = calculate(splittedNum);
     } // Valid한 경우
-
-    if (!isNaN(splittedNum[0]) && isNaN(splittedNum[1])) {
-        grabDisplay().value = splittedNum[0];
-    } // 연산자 없이 숫자만 입력했을 경우
+    checkPassThrough(splittedNum);
  }
