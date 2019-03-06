@@ -3,16 +3,16 @@ function grabDisplay() {
     return document.getElementById('display');
 }
 
-window.onkeydown = function findKeyCode(e) {
+window.addEventListener('keydown', function(e) {
     var pressedKey = document.querySelector(`td[data-key="${e.key}"]`);
     console.log(e.key+" Pressed");
     if (pressedKey != null) {
         pressedKey.onclick();
     }
-}
+});
 
-function putNum(c) {
-    grabDisplay().value += c; // 숫자 입력
+function putNumber(c) {
+    grabDisplay().value += c;
 }
 
 function putOperand(c) {
@@ -24,19 +24,23 @@ function resetDisplay() {
     grabDisplay().value = ""; // C/E
 }
 
-function checkCalValidity(num) {
-    var operands = /[\*\/\+\-]/;
+function checkDividedByZero(num) {
     var divide = /\//;
-    var misplacedOperand = (operands.exec(grabDisplay().value)) != null && (num[0] == ""||num[1] == "") || isNaN(num[0]);
     var dividedByZero = divide.exec(grabDisplay().value) && num[1] == '0';
-
-    if(misplacedOperand){
-        alert("입력 형식이 맞지 않습니다!");
+    if(dividedByZero) {
+        alert("0으로 나눌 수 없음!");
         resetDisplay();
         return false;
     }
-    if(dividedByZero) {
-        alert("0으로 나눌 수 없음!");
+    return true;
+}
+
+function checkCalValidity(num) {
+    var operands = /[\*\/\+\-]/;
+    var misplacedOperand = (operands.exec(grabDisplay().value)) != null && (num[0] == ""||num[1] == "") || isNaN(num[0]);
+
+    if(misplacedOperand){
+        alert("입력 형식이 맞지 않습니다!");
         resetDisplay();
         return false;
     }

@@ -40,7 +40,7 @@ function evaluateCal() {
     var operands = /[\*\/\+\-]/;
     var splittedNum = grabDisplay().value.split(operands); // 연산자 기준으로 나눔
 
-    if (checkCalValidity(splittedNum)) {
+    if (checkCalValidity(splittedNum) || (CheckDividedByZero(splittedNum))) {
         grabDisplay().value = calculate(splittedNum);
     } // Valid한 경우
 
