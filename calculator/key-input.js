@@ -19,7 +19,7 @@ function putNumber(c) {
 }
 
 function putOperand(c) {
-    evaluateCal(); // 새로운 연산자를 입력할 때마다 이전 연산을 완료
+    evaluateCal();
     grabDisplay().value += c;
 }
 

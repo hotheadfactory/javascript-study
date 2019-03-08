@@ -48,10 +48,10 @@ function checkPassThrough(splittedNum) {
 
 function evaluateCal() {
     var operands = /[\*\/\+\-]/;
-    var splittedNum = grabDisplay().value.split(operands); // 연산자 기준으로 나눔
+    var splittedNum = grabDisplay().value.split(operands);
 
     if (checkCalValidity(splittedNum) || checkDividedByZero(splittedNum)) {
         grabDisplay().value = calculate(splittedNum);
-    } // Valid한 경우
+    }
     checkPassThrough(splittedNum);
  }
