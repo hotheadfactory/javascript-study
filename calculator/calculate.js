@@ -43,7 +43,7 @@ function writeToDisplay(splittedNum) {
 function checkPassThrough(splittedNum) {
     if (!isNaN(splittedNum[0]) && isNaN(splittedNum[1])) {
         grabDisplay().value = splittedNum[0];
-    } // 연산자 없이 숫자만 입력했을 경우
+    }
 }
 
 function evaluateCal() {

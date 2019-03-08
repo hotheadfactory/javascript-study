@@ -24,7 +24,7 @@ function putOperand(c) {
 }
 
 function resetDisplay() {
-    grabDisplay().value = ""; // C/E
+    grabDisplay().value = "";
 }
 
 function checkDividedByZero(num) {
