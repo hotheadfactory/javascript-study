@@ -7,9 +7,9 @@
 <script type="text/javascript" src="clock.js"></script>
 <link rel="stylesheet" href="clock.css" type="text/css">
 </head>
-<body onload="playAudio('./happysky.mp3');">
-<div id = "csat2020" class="counter">
-    <span class="text_target"><b>자바스크립트 시계!</b></span><br><br>
+<body>
+<div id="jsclock" class="counter">
+    <span class="text_target"><b>자바스크립트 시계!</b></span><br>
     <span id="dday-timer" class="alert"></span>
     <span id="time-ampm" class="num"></span>
     <span id="time-hr1" class="num"></span>
@@ -24,7 +24,10 @@
     <span id="time-mili1" class="num"></span>
     <span id="time-mili2" class="num"></span>
     <span id="time-mili3" class="num"></span>
-    <br><br><br><br><br><br>
+    <br><br>
+    <span id="button-sw" class="button" onclick="stopWatch();">START/STOP</span>
+    <span id="button-rst" class="button" onclick="resetStopWatch();">RESET</span>
+    <br><br><br><br>
 </div>
 
 <script type="text/javascript">
