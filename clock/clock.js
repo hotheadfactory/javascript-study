@@ -1,4 +1,5 @@
 const currentTime = setInterval (setClock, 1);
+
 var isClock = 1;
 var timerStartTime = 0;
 var isStopped = 0;
