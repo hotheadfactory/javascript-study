@@ -1,12 +1,12 @@
 const currentTime = setInterval (setClock, 1);
 
-let isClock = 1;
+let isClock = true;
 let timerStartTime = 0;
-let isStopped = 0;
+let isStopped = false;
 
-function expandDigit(n, width) {
-  n = n + '';
-  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+function expandDigit(num, digit) {
+  num = num + '';
+  return num.length >= digit ? num : new Array(digit - num.length + 1).join('0') + num;
 }
 
 function setClock() {
@@ -19,7 +19,7 @@ function setDisplay(nowday) {
     var h = 0, m = 0, s = 0, ms = 0;
     var ampm = "AM";
     h = Math.floor((nowday / (1000*60*60)) % 24);
-    if(isClock == 1) {
+    if(isClock) {
       if(h == 12) {
         ampm = "PM";
       }
@@ -33,7 +33,7 @@ function setDisplay(nowday) {
       }
     }
 
-    if(isClock == 0) {
+    if(!isClock) {
       ampm = "ST";
       nowday -= timerStartTime;
       h = Math.floor((nowday / (1000*60*60)) % 24);
@@ -53,15 +53,15 @@ function stopWatch() {
   var time = new Date();
   time = time.getTime()+32400000;
   timerStartTime = time;
-  if(isClock == 0) {
+  if(!isClock) {
     clearInterval(currentTime);
-    isStopped = 1;
+    isStopped = true;
   }
-  isClock = 0;
+  isClock = false;
 }
 
 function resetStopWatch() {
-  if(isStopped == 1) {
+  if(isStopped) {
     window.location.reload(true);
   }
 }
