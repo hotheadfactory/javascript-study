@@ -3,6 +3,8 @@ const currentTime = setInterval (setClock, 1);
 let isClock = true;
 let timerStartTime = 0;
 let isStopped = false;
+let hour = 0, minute = 0, second = 0, milisec = 0;
+let ampm = "AM";
 
 function expandDigit(num, digit) {
   num = num + '';
@@ -12,41 +14,43 @@ function expandDigit(num, digit) {
 function setClock() {
   var nowday = new Date();
   nowday = nowday.getTime()+32400000;// GMT+9
+  checkAMPM(nowday);
   setDisplay(nowday);
 }
 
-function setDisplay(nowday) {
-    var h = 0, m = 0, s = 0, ms = 0;
-    var ampm = "AM";
-    h = Math.floor((nowday / (1000*60*60)) % 24);
-    if(isClock) {
-      if(h == 12) {
-        ampm = "PM";
-      }
-      if (h == 0) {
-        h = 12;
-        ampm = "AM";
-      }
-      if (h > 12) {
-        h = h-12;
-        ampm = "PM";
-      }
+function checkAMPM(nowday) {
+  hour = Math.floor((nowday / (1000*60*60)) % 24);
+  if(isClock) {
+    if(hour == 12) {
+      ampm = "PM";
     }
+    if (hour == 0) {
+      hour = 12;
+      ampm = "AM";
+    }
+    if (hour > 12) {
+      hour = hour-12;
+      ampm = "PM";
+    }
+  }
 
-    if(!isClock) {
-      ampm = "ST";
-      nowday -= timerStartTime;
-      h = Math.floor((nowday / (1000*60*60)) % 24);
-    }
-    m = Math.floor((nowday / (1000*60)) % 60);//minute
-    s = Math.floor((nowday / 1000) % 60);//second
-    ms = Math.floor(nowday % 1000);// miliseconds
+  if(!isClock) {
+    ampm = "ST";
+    nowday -= timerStartTime;
+    hour = Math.floor((nowday / (1000*60*60)) % 24);
+  }
+  minute = Math.floor((nowday / (1000*60)) % 60);//minute
+  second = Math.floor((nowday / 1000) % 60);//second
+  milisec = Math.floor(nowday % 1000);// miliseconds
+}
+
+function setDisplay(nowday) {
     document.getElementById("ddayTimer").innerHTML = "<br>";
     document.getElementById("timeAmpm").innerHTML = ampm+" ";
-    document.getElementById("hour").innerHTML = expandDigit(h, 2);
-    document.getElementById("minute").innerHTML = expandDigit(m, 2);
-    document.getElementById("second").innerHTML = expandDigit(s, 2);
-    document.getElementById("miliseconds").innerHTML = expandDigit(ms, 3);
+    document.getElementById("hour").innerHTML = expandDigit(hour, 2);
+    document.getElementById("minute").innerHTML = expandDigit(minute, 2);
+    document.getElementById("second").innerHTML = expandDigit(second, 2);
+    document.getElementById("miliseconds").innerHTML = expandDigit(milisec, 3);
 }
 
 function stopWatch() {
