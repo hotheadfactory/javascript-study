@@ -53,7 +53,7 @@ function setDisplay(nowday) {
     document.getElementById("miliseconds").innerHTML = expandDigit(milisec, 3);
 }
 
-function stopWatch() {
+function startStopWatch() {
   var time = new Date();
   time = time.getTime()+32400000;
   timerStartTime = time;
