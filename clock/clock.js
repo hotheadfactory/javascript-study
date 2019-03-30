@@ -7,7 +7,7 @@ let hour = 0, minute = 0, second = 0, milisec = 0;
 let ampm = "AM";
 
 function expandDigit(num, digit) {
-  num = num + '';
+  num = String(num);
   return num.length >= digit ? num : new Array(digit - num.length + 1).join('0') + num;
 }
 
@@ -33,7 +33,6 @@ function checkAMPM(nowday) {
       ampm = "PM";
     }
   }
-
   if(!isClock) {
     ampm = "ST";
     nowday -= timerStartTime;
