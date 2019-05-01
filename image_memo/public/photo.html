@@ -4,11 +4,23 @@
         <meta charset="UTF-8">
         <title>이미지 메모!</title>
     </head>
-    <body>
+    <body onload="timeSet();">
         <h1>나의 메모</h1>
         <br>
         <form method="post" enctype="multipart/form-data" action="/process/photo">
             <table>
+                <tr>
+                    <td><label>작성자</label></td>
+                    <td><input type="text" name="userName"></td>
+                </tr>
+                <tr>
+                    <td><label>작성일시</label></td>
+                    <td><input type="text" id="currentDate"></td>
+                </tr>
+                <tr>
+                    <td><label>내용</label></td>
+                    <td><textarea name="content" rows="4"></textarea></td>
+                </tr>
                 <tr>
                     <td><label>사진</label></td>
                     <td><input type="file" name="photo"></td>
@@ -16,5 +28,10 @@
             </table>
             <input type="submit" value="업로드" name="submit">
         </form>
+        <script>
+            function timeSet() {
+               document.getElementById("currentDate").value = Date();
+            }
+        </script>
     </body>
 </html>

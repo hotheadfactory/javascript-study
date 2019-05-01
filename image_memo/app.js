@@ -59,9 +59,14 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
     try {
         var files = req.files;
+        var content = req.body.content || req.query.content;
+        var userName = req.body.userName || req.query.userName;
 
-        console.dir('#===== File information =====#')
+        console.dir('#===== query information =====#')
         console.dir(req.files[0]);
+        console.dir('Name: ' + userName);
+        console.dir('Date: ' + Date());
+        console.dir('Content: ' + content);
         console.dir('#============================#')
         
         var originalname = '', 
@@ -90,7 +95,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
             res.write('<h3>메모가 저장되었습니다.<br>서버에 저장된 사진: </h3>');
             res.write('<img src="/uploads/'+filename+'" width="200">');
             res.write('<hr/>');
-            res.write('<p>Original Filename: ' + originalname + ' -> Stored Filename : ' + filename + '</p>');
+            res.write('<p>http://168.131.39.34:8080/uploads/' + filename + '</p>');
             res.write('<p>MIME TYPE : ' + mimetype + '</p>');
             res.write('<p>Filesize : ' + size + '</p>');
             res.write('<input type="button" value="다시 작성" onclick="history.go(-1)">');
