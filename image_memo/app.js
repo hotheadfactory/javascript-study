@@ -1,39 +1,15 @@
-var express = require('express')
-    , http = require('http')
-    , path = require('path');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const static = require('serve-static');
+const multer = require('multer');
+const app = express();
 
-var bodyParser = require('body-parser')
-    , cookieParser = require('cookie-parser')
-    , static = require('serve-static')
-    , errorHandler = require('errorHandler');
-
-var expressErrorHandler = require('express-error-handler');
-
-var expressSession = require('express-session');
-
-var multer = require('multer');
-var fs = require('fs');
-
-var cors = require('cors');
-
-var app = express();
 app.set('port', process.env.PORT || 8080);
-
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-
 app.use('/public', static(path.join(__dirname, 'public')));
 app.use('/uploads', static(path.join(__dirname, 'uploads')));
-
-app.use(cookieParser());
-
-app.use(expressSession({
-    secret:'my key',
-    resave:true,
-    saveUninitialized:true
-}));
-
-app.use(cors());
 
 var storage = multer.diskStorage({
     destination: function(req, file, callback) {

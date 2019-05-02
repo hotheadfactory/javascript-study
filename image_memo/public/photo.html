@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>이미지 메모!</title>
     </head>
-    <body onload="timeSet();">
+    <body onload="setCurrentDate();">
         <h1>나의 메모</h1>
         <br>
         <form method="post" enctype="multipart/form-data" action="/process/photo">
@@ -29,7 +29,7 @@
             <input type="submit" value="업로드" name="submit">
         </form>
         <script>
-            function timeSet() {
+            function setCurrentDate() {
                document.getElementById("currentDate").value = Date();
             }
         </script>
