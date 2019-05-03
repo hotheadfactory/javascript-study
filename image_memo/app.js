@@ -1,13 +1,13 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const static = require('serve-static');
 const multer = require('multer');
 const app = express();
+const port = 8080;
 
 app.set('port', process.env.PORT || 8080);
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
 app.use('/public', static(path.join(__dirname, 'public')));
 app.use('/uploads', static(path.join(__dirname, 'uploads')));
 
@@ -31,19 +31,19 @@ var upload = multer({
 var router = express.Router();
 
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res) {
-    console.log('Photo directory called.');
+    console.log('사진 디렉터리 조회됨.');
 
     try {
         var files = req.files;
         var content = req.body.content || req.query.content;
         var userName = req.body.userName || req.query.userName;
 
-        console.dir('#===== query information =====#')
+        console.dir('#========= 파일 정보 =========#')
+        console.dir('이름: ' + userName);
+        console.dir('날짜: ' + Date());
+        console.dir('내용: ' + content);
         console.dir(req.files[0]);
-        console.dir('Name: ' + userName);
-        console.dir('Date: ' + Date());
-        console.dir('Content: ' + content);
-        console.dir('#============================#')
+        console.dir('#=============================#')
         
         var originalname = '', 
             filename = '',
@@ -51,21 +51,13 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
             size = 0;
 
             if(Array.isArray(files)) {
-                console.log("Amount of files in array : %d", files.length);
                 for(var index = 0; index < files.length; index++) {
                     originalname = files[index].originalname;
                     filename = files[index].filename;
                     mimetype = files[index].mimetype;
                     size = files[index].size;
                 }
-            }else {
-                console.log("Currently there is only one file.");
-                originalname = files[index].originalname;
-                filename = files[index].filename;
-                mimetype = files[index].mimetype;
-                size = files[index].size;
             }
-            console.log('File information: ' + originalname + ', ' + filename + ', ' + mimetype + ', ' + size);
             
             res.writeHead('200', {'Content-type':'text/html;charset=utf8'});
             res.write('<h3>메모가 저장되었습니다.<br>서버에 저장된 사진: </h3>');
@@ -83,6 +75,6 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
 app.use('/', router);
 
-app.listen(8080, function() {
-    console.log('서버 가동 중!');
+app.listen(port, function() {
+    console.log('서버 가동 중! (' + port + '번 포트)');
 });
