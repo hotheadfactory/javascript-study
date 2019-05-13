@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>이미지 메모!</title>
+    </head>
+    <body>
+        <h3>메모가 저장되었습니다.<br>서버에 저장된 사진: </h3>
+        <img src="/uploads/<%= filename %>" height="300">
+        <hr/>
+        <p>http://168.131.39.34:8080/uploads/<%= filename %></p>
+        <p>MIME TYPE : <%= mimetype %></p>
+        <p>Filesize : <%= size %></p>
+        <input type="button" value="다시 작성" onclick="history.go(-1)">
+    </body>
+</html>

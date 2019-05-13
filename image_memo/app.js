@@ -6,6 +6,7 @@ const app = express();
 const port = 8080;
 
 app.set('port', process.env.PORT || 8080);
+app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 app.use('/public', static(path.join(__dirname, 'public')));
@@ -23,7 +24,7 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage: storage,
     limits: {
-        files: 10, 
+        files: 1, 
         filesize: 1024*1024*1024
     }
 });
@@ -42,38 +43,20 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
         console.dir('이름: ' + userName);
         console.dir('날짜: ' + Date());
         console.dir('내용: ' + content);
-        console.dir(req.files[0]);
+        console.dir(files);
         console.dir('#=============================#')
-        
-        var originalname = '', 
-            filename = '',
-            mimetype = '',
-            size = 0;
 
-            if(Array.isArray(files)) {
-                for(var index = 0; index < files.length; index++) {
-                    originalname = files[index].originalname;
-                    filename = files[index].filename;
-                    mimetype = files[index].mimetype;
-                    size = files[index].size;
-                }
-            }
-            
-            res.writeHead('200', {'Content-type':'text/html;charset=utf8'});
-            res.write('<h3>메모가 저장되었습니다.<br>서버에 저장된 사진: </h3>');
-            res.write('<img src="/uploads/'+filename+'" width="200">');
-            res.write('<hr/>');
-            res.write('<p>http://168.131.39.34:8080/uploads/' + filename + '</p>');
-            res.write('<p>MIME TYPE : ' + mimetype + '</p>');
-            res.write('<p>Filesize : ' + size + '</p>');
-            res.write('<input type="button" value="다시 작성" onclick="history.go(-1)">');
-            res.end();
-    } catch(err) {
-        console.dir(err.stack);
-    }
-});
+        res.render('result', files[0]);
+        } catch(err) {
+            console.dir(err.stack);
+        }
+    });
 
 app.use('/', router);
+
+app.get('/', function(req, res) {
+    res.render('photo');
+});
 
 app.listen(port, function() {
     console.log('서버 가동 중! (' + port + '번 포트)');
