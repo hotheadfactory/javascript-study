@@ -3,6 +3,14 @@ const path = require('path');
 const static = require('serve-static');
 const multer = require('multer');
 const app = express();
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+    host    : '-',
+    user    : '-',
+    password: '-',
+    database: '-',
+    port    :  0
+});
 const port = 8080;
 
 app.set('port', process.env.PORT || 8080);
@@ -47,6 +55,19 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
         console.dir('#=============================#')
 
         res.render('result', files[0]);
+        
+        connection.connect();
+        connection.query('INSERT INTO imageUploadTest( name, time, content, dir) VALUES (\''+ userName +'\', \''+Date.now()+'\', \''+content+'\', \''+files[0].filename+'\');'
+        , function(err, rows, fields) {
+            if (!err) {
+              console.log("DB write successful!");
+            }
+            else {
+                console.log(err);
+                console.log("Error while writing into DB!");
+            }  
+        });
+        connection.end();
         } catch(err) {
             console.dir(err.stack);
         }
